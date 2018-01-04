@@ -8,7 +8,7 @@ Tested on IE 10+
 
 #### Install
 ```
-npm i url-polyfill --save
+npm i url-polyfill-light --save
 ```
 
 #### Currently supported
