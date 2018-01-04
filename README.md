@@ -1,5 +1,7 @@
 ### Polyfill URL and URLSearchParams to match last WHATWG specifications
 
+Removed the base parameter and changed the document.implementation.createHTMLDocument('') to be compatible with LG Netcast devices.
+
 Compliant in most of the use cases but not at 100% (like unicode chars, punycodes, etc...)
 
 Tested on IE 10+

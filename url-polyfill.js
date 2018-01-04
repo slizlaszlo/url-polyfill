@@ -170,28 +170,23 @@ var g = (typeof global !== 'undefined') ? global
     var _URL = global.URL;
 
     var URL = function(url, base) {
-      if(typeof url !== 'string') url = String(url);
-
-      var doc = document.implementation.createHTMLDocument('');
-      window.doc = doc;
-      if(base) {
-        var baseElement = doc.createElement('base');
-        baseElement.href = base;
-        doc.head.appendChild(baseElement);
-      }
-
-      var anchorElement = doc.createElement('a');
-      anchorElement.href = url;
-      doc.body.appendChild(anchorElement);
-      anchorElement.href = anchorElement.href; // force href to refresh
-
-      if(anchorElement.protocol === ':' || !/:/.test(anchorElement.href)) {
-        throw new TypeError('Invalid URL');
-      }
-
-      Object.defineProperty(this, '_anchorElement', {
-        value: anchorElement
-      });
+      if (typeof url !== 'string') throw new TypeError('Failed to construct \'URL\': Invalid URL');
+      
+        var doc = document.createElement("div");
+        window.doc = doc;
+      
+        var anchorElement = document.createElement('a');
+        anchorElement.href = url;
+        doc.appendChild(anchorElement);
+        anchorElement.href = anchorElement.href; // force href to refresh
+      
+        if (anchorElement.protocol === ':' || !/:/.test(anchorElement.href)) {
+          throw new TypeError('Invalid URL');
+        }
+      
+        Object.defineProperty(this, '_anchorElement', {
+          value: anchorElement
+        });
     };
 
     var proto = URL.prototype;
